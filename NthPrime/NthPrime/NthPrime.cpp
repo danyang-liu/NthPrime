@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+﻿#include"stdafx.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -9,7 +9,11 @@ using namespace std;
 
 int getnthprime(int n)
 {
-	int upper = 1.2 * n*log(n);
+	int upper = 1000;
+	if (n > 100)
+	{
+		upper = 1.2 * n*log(n);
+	}
 	vector<int>primes;
 	for (int i = 0; i <= upper; ++i)
 	{
@@ -46,15 +50,15 @@ int getnthprime(int n)
 int main(int argc, const char * argv[]) {
 	ofstream fout;
 	fout.open("result.txt", ios::out);
-
-	int n1 = 10000;
-	int n2 = 100000;
-	int n3 = 1000000;
-
-	fout << getnthprime(n1) << endl;
-	fout << getnthprime(n2) << endl;
-	fout << getnthprime(n3) << endl;
-
+	cout << "please enter n:(enter 0 end):" << endl;
+	int n;
+	cin >> n;
+	while (n > 0)
+	{
+		fout << getnthprime(n) << endl;
+		cout << "please enter n:(enter 0 end):" << endl;
+		cin >> n;
+	}
 	fout.close();
 	return 0;
 }
