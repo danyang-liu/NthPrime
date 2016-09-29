@@ -1,3 +1,4 @@
-104729
-1299709
-15485863
+the3000000th prime:49979687
+beginTime:3510
+endTime:4008
+endTime-beginTime:498ms
