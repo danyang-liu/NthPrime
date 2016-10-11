@@ -1,4 +1,4 @@
-the3000000th prime:49979687
-beginTime:3510
-endTime:4008
-endTime-beginTime:498ms
+the10000000th prime:  139 429 607
+beginTime:4086
+endTime:6306
+endTime-beginTime:2220ms

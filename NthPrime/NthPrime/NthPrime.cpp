@@ -3,7 +3,7 @@
 #include <vector>
 #include<fstream>
 #include <time.h>
-#define MAXSIZE 100000000
+#define MAXSIZE 200000000
 int isNotPrime[MAXSIZE];
 int prime[MAXSIZE];
 using namespace std;
@@ -16,7 +16,7 @@ int main()
 {
 	ofstream fout;
 	fout.open("result.txt", ios::out);
-	cout << "please enter n:(enter 0 end):" << endl;
+	cout << "please enter n:" << endl;
 	int n;
 	cin >> n;
 
@@ -28,8 +28,8 @@ int main()
 
 	int num_prime = 0;
 
-	memset(isNotPrime, 0, sizeof(int)*upper);
-	memset(prime, 0, sizeof(int)*n);
+	//	memset(isNotPrime, 0, sizeof(int)*upper);
+	//memset(prime, 0, sizeof(int)*n);
 	isNotPrime[0] = 1;
 	isNotPrime[1] = 1;
 	long beginTime = clock();//获得开始时间，单位为毫秒  
@@ -41,12 +41,37 @@ int main()
 		}
 		for (int j = 0; j < num_prime && i * prime[j] < upper; j++)
 		{
-			isNotPrime[i * prime[j]] = 1;
-			if (!(i % prime[j]))
-				break;
+			try
+			{
+				isNotPrime[i * prime[j]] = 1;
+				if (!(i % prime[j]))
+					break;
+			}
+			catch(exception e)
+			{
+				// Code to execute after the try block goes here.
+			}
 		}
 	}
-	fout<<"the"<<n<<"th prime:" << prime[n - 1] << endl;
+	int index = 0;
+	int nprime[100];
+	while (prime[n - 1])
+	{
+		nprime[index] = prime[n - 1] % 10;
+		index++;
+		prime[n - 1] = prime[n - 1] / 10;
+	}
+	fout << "the" << n << "th prime: ";
+	index--;
+	for (index; index >= 0; index--)
+	{
+		if (index % 3 == 2)
+		{
+			fout << ' ';
+		}
+		fout << nprime[index];
+	}
+	fout << endl;
 	//	cout << prime[1000000];
 	long endTime = clock();//获得结束时间
 	fout << "beginTime:" << beginTime << endl
